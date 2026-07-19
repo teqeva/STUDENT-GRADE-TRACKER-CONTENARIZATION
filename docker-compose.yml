@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: student-grade-tracker-frontend:1.0.0
+    image: teqiee/student-grade-tracker-frontend:1.0.0
     container_name: student-grade-tracker-frontend
     ports:
       - "8080:80"
@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: student-grade-tracker-backend:1.0.0
+    image: teqiee/student-grade-tracker-backend:1.0.0
     container_name: student-grade-tracker-backend
     ports:
       - "3000:3000"
