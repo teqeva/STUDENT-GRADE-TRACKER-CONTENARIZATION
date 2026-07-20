@@ -1,18 +1,18 @@
 # Use lightweight Nginx image (Alpine is tiny (5MB))
-FROM nginx:alpine
+FROM nginx:1.30.0-alpine
 
 # Add labels to identify the image
 LABEL maintainer="student@kubeverse.io"
 LABEL version="1.0.0"
 LABEL description="Student Grade Tracker Frontend"
 
-# Install wget for health checks (lightweight tool)
+# Install wget for health checks 
 RUN apk add --no-cache wget
 
 # Copy the HTML page to Nginx's default web directory
 COPY src/index.html /usr/share/nginx/html/index.html
 
-# Copy custom Nginx config to conf.d (not overriding main config)
+# Copy custom Nginx config to conf.d 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Create required directories and set correct permissions for nginx user

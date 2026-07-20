@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # Build script for Student Grade Tracker
-# Usage: ./scripts/build.sh [version]
-
 # Exit on error
 set -e
 
@@ -16,9 +14,9 @@ echo ""
 # Build frontend
 echo "Building frontend..."
 if docker build -t "grade-tracker-frontend:${VERSION}" -f ./frontend/Dockerfile ./frontend; then
-    echo "✓ Frontend built successfully: grade-tracker-frontend:${VERSION}"
+    echo "Frontend built successfully: grade-tracker-frontend:${VERSION}"
 else
-    echo "✗ Failed to build frontend"
+    echo "Failed to build frontend"
     exit 1
 fi
 echo ""
@@ -26,9 +24,9 @@ echo ""
 # Build backend
 echo "Building backend..."
 if docker build -t "grade-tracker-backend:${VERSION}" -f ./backend/Dockerfile ./backend; then
-    echo "✓ Backend built successfully: grade-tracker-backend:${VERSION}"
+    echo "Backend built successfully: grade-tracker-backend:${VERSION}"
 else
-    echo "✗ Failed to build backend"
+    echo "Failed to build backend"
     exit 1
 fi
 echo ""

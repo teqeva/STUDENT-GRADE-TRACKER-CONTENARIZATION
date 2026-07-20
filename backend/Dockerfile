@@ -1,4 +1,4 @@
-# Stage 1: Builder - where we install everything
+# Stage 1: Builder 
 FROM node:18-alpine AS builder
 
 # Set working directory
@@ -13,12 +13,15 @@ RUN npm install
 # Copy the source code
 COPY src/ ./src/
 
-# Stage 2: Production - where we build the final image
-FROM node:18-alpine AS production
+# Stage 2: Production 
+FROM node:20-alpine AS production
 
 # Add labels to identify the image
 LABEL maintainer="student@kubeverse.io"
-LABEL version="1.0.0"
+LABEL version="1.0.1"
+
+# Upgrade all system packages 
+RUN apk update && apk upgrade --no-cache
 
 # Install wget for health checks
 RUN apk add --no-cache wget
@@ -29,7 +32,7 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install ONLY production dependencies (smaller image)
+# Install ONLY production dependencies 
 RUN npm install --production && npm cache clean --force
 
 # Copy source code from builder stage

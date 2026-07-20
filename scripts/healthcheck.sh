@@ -10,27 +10,27 @@ BACKEND_URL=${BACKEND_URL:-"http://localhost:3000"}
 # Check frontend
 echo "Checking frontend: ${FRONTEND_URL}"
 if curl -s -o /dev/null -w "%{http_code}" --max-time 5 ${FRONTEND_URL} | grep -q "200"; then
-    echo "✓ Frontend is healthy"
+    echo "Frontend is healthy"
 else
-    echo "✗ Frontend is not responding"
+    echo "Frontend is not responding"
     exit 1
 fi
 
 # Check backend health
 echo "Checking backend: ${BACKEND_URL}/health"
 if curl -s --max-time 5 ${BACKEND_URL}/health | grep -q "OK"; then
-    echo "✓ Backend is healthy"
+    echo "Backend is healthy"
 else
-    echo "✗ Backend is not healthy"
+    echo "Backend is not healthy"
     exit 1
 fi
 
 # Check backend API
 echo "Checking backend API: ${BACKEND_URL}/api/students"
 if curl -s --max-time 5 ${BACKEND_URL}/api/students | grep -q "\["; then
-    echo "✓ Backend API is responding"
+    echo "Backend API is responding"
 else
-    echo "✗ Backend API is not responding"
+    echo "Backend API is not responding"
     exit 1
 fi
 
