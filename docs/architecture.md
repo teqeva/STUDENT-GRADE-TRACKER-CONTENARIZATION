@@ -1,4 +1,3 @@
-````markdown
 # Student Grade Tracker - Architecture Design
 
 ## 1. Service Overview
