@@ -23,8 +23,8 @@ LABEL version="1.0.1"
 # Upgrade all system packages 
 RUN apk update && apk upgrade --no-cache
 
-# Install wget for health checks
-RUN apk add --no-cache wget
+# Install curl for health checks
+RUN apk add --no-cache curl
 
 # Set working directory
 WORKDIR /app
@@ -49,7 +49,7 @@ EXPOSE 3000
 
 # Health check to monitor if app is running
 HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
+  CMD curl --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
 
 # Start the application
 CMD ["node", "src/server.js"]
